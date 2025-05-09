@@ -1,0 +1,9 @@
+# requirements.txt for Movie Rating Prediction Project
+
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+joblib
+scipy
