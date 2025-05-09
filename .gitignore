@@ -80,6 +80,7 @@ target/
 
 # Output directory from our script
 output/
+output.zip
 
 # IPython
 profile_default/
@@ -140,8 +141,8 @@ env.bak/
 venv.bak/
 
 # Dataset (Uncomment and edit if your dataset is large and shouldn't be committed)
-# movies.csv
-# *.csv
+movies.csv
+*.csv
 
 # Spyder project settings
 .spyderproject
