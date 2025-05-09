@@ -141,16 +141,18 @@ The model is trained on a dataset of movies with the following key features (act
 8.  **Model Saving:** Save the best performing model and the fitted TF-IDF vectorizers for later use.
 9.  **Example Prediction:** Demonstrate predicting a rating for a new movie instance using the saved model.
 
-## 📈 Results
+## 📈 Expected Results and Performance
 
 The models were evaluated, and the **Gradient Boosting Regressor** typically performed best with the sample dataset structure. For instance, one run yielded:
 
-*   **Best Model:** Gradient Boosting
-*   **MAE:** ~0.79
-*   **RMSE:** ~1.05
-*   **R² Score:** ~0.41
+*   **Best Model:** Gradient Boosting Regressor
+*   **R² Score:** Approximately 0.40 - 0.45 (meaning the model explains 40-45% of the variance in ratings)
+*   **RMSE (Root Mean Squared Error):** Approximately 1.0 - 1.1 (average prediction error in rating points)
+*   **MAE (Mean Absolute Error):** Approximately 0.78 - 0.82
 
 This indicates the model can explain about 41% of the variance in movie ratings based on the provided features. An example prediction for a new movie might look like: `Predicted Rating: 5.19`.
+
+![Actual_vs_Predicted_Ratings_Gradient_Boosting](https://github.com/user-attachments/assets/56baf0ac-2acc-4d68-ad8f-3112726a7bcf)
 
 *(Note: Actual results will vary based on your specific dataset and any modifications to the code.)*
 
