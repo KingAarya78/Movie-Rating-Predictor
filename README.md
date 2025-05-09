@@ -36,8 +36,8 @@ This project aims to predict movie ratings based on various features like genre,
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
-    cd YOUR_REPOSITORY_NAME
+    git clone https://github.com/KingAarya78/Movie-Rating-Predictor.git
+    cd Movie-Rating-Predictor
     ```
 
 2.  **Create a virtual environment (recommended):**
@@ -50,13 +50,29 @@ This project aims to predict movie ratings based on various features like genre,
     ```bash
     pip install -r requirements.txt
     ```
-    *(Make sure your `requirements.txt` file is up-to-date and included in the repository.)*
+    *If `requirements.txt` is not provided, install manually: `pip install pandas numpy scikit-learn matplotlib seaborn joblib scipy`*
 
-4.  **Dataset:**
-    *   This project expects a CSV file named `movies.csv` in the root directory.
-    *   **You need to provide your own dataset.** The script is configured to look for `movies.csv`.
-    *   Ensure your dataset contains columns similar to those defined in the script configuration (e.g., `Name`, `Year`, `Duration`, `Genre`, `Rating`, `Votes`, `Director`, `Actor 1`, `Actor 2`, `Actor 3`).
-    *   Update the `DATASET_PATH = 'movies.csv'` variable in both `movie_rating_predictor.py` and `movie_rating_predictor.ipynb` if your file has a different name or path.
+4.  **Prepare Your Dataset:**
+    *   This project requires a **CSV dataset** of movies.
+    *   Place your dataset in the root directory of the project (or update the `DATASET_PATH` variable).
+    *   **Crucially, you need to configure the script/notebook to match your dataset's column names.**
+    *   Open `movie_rating_predictor.py` (and `movie_rating_predictor.ipynb` if using) and update the following **Configuration Variables** near the top of the file:
+        ```python
+        DATASET_PATH = 'your_dataset_name.csv' # E.g., 'movies.csv'
+        NAME_COL = 'Actual_Name_Column_Title'
+        GENRE_COL = 'Actual_Genre_Column_Title'
+        DIRECTOR_COL = 'Actual_Director_Column_Title'
+        ACTORS_COL = 'Actual_Actor_1_Column_Title' # Or your primary actor column
+        RATING_COL = 'Actual_Rating_Column_Title'
+        YEAR_COL = 'Actual_Year_Column_Title'
+        DURATION_COL = 'Actual_Duration_Column_Title'
+        VOTES_COL = 'Actual_Votes_Column_Title'
+
+        # Also update 'use_cols' if your actor columns are named differently than 'Actor 1', 'Actor 2', 'Actor 3'
+        use_cols = [NAME_COL, YEAR_COL, DURATION_COL, GENRE_COL, RATING_COL, VOTES_COL, DIRECTOR_COL, ACTORS_COL, 'Actual_Actor_2_Column_Title', 'Actual_Actor_3_Column_Title']
+        ```
+    *   The script's data cleaning logic (e.g., for 'Year', 'Duration', 'Votes') is designed for common string formats. If your dataset has significantly different formats in these columns, you may need to adjust the corresponding cleaning code in Section 3 of the script/notebook.
+
 
 ## 🚀 How to Run
 
@@ -64,14 +80,22 @@ There are two main ways to interact with this project:
 
 ### 1. Using the Python Script (`movie_rating_predictor.py`)
 
-This script will perform all steps from data loading to model evaluation and saving.
+The entire pipeline (data loading, preprocessing, training, evaluation, and saving outputs) can be executed using the Python script.
 
-1.  **Verify Dataset Path:** Ensure the `DATASET_PATH` variable at the top of `movie_rating_predictor.py` points to your dataset file.
-2.  **Run the script from your terminal:**
+1.  **Ensure Configuration:** Verify that the `DATASET_PATH` and column name variables in `movie_rating_predictor.py` are correctly set for your dataset.
+2.  **Execute from Terminal:**
+    Navigate to the project's root directory in your terminal and run:
     ```bash
     python movie_rating_predictor.py
     ```
-    The script will print outputs to the console, save the best model (`best_movie_rating_model_*.joblib`), vectorizers (`tfidf_vectorizers.joblib`), and a plot (`Actual_vs_Predicted_Ratings_*.png`).
+3.  **Outputs:**
+    *   Console output will show the progress, model evaluation metrics, and file save confirmations.
+    *   An `output/` directory will be created in the project root.
+    *   Inside `output/`, you will find:
+        *   `Actual_vs_Predicted_Ratings_*.png`: A plot visualizing the best model's performance.
+        *   `model_comparison_results.csv`: A CSV file with the performance metrics of all trained models.
+        *   `best_movie_rating_model_*.joblib`: The saved best-performing machine learning model.
+        *   `tfidf_vectorizers.joblib`: The saved TF-IDF vectorizers.
 
 ### 2. Using the Jupyter Notebook (`movie_rating_predictor.ipynb`)
 
